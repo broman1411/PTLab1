@@ -1,11 +1,14 @@
 # -*- coding: utf-8 -*-
 import argparse
 import sys
+import os
 
-from .CalcRating import CalcRating
-from .TextDataReader import TextDataReader
-from .JsonDataReader import JsonDataReader
-from .DebtCalculation import DebtCalculation
+# Добавляем путь к src в sys.path для импортов
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+
+from src.TextDataReader import TextDataReader
+from src.JsonDataReader import JsonDataReader
+from src.DebtCalculation import DebtCalculation
 
 
 def get_path_from_arguments(args) -> str:
@@ -28,14 +31,11 @@ def main():
     students = reader.read(path)
     print("Students: ", students)
 
-    # Расчет рейтинга
-    rating = CalcRating(students).calc()
-    print("Rating: ", rating)
-
     # Расчет задолженностей
     debt_calculator = DebtCalculation(students)
     debt_count = debt_calculator.count_students_with_debts()
-    print(f"Количество студентов с академическими задолженностями: {debt_count}")
+    print(f"Количество студентов с академическими "
+          f"задолженностями: {debt_count}")
 
 
 if __name__ == "__main__":
