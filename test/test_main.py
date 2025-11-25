@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
+from src.main import get_path_from_arguments
 import sys
 import os
 import pytest
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
-from src.main import get_path_from_arguments
 
 
 @pytest.fixture()

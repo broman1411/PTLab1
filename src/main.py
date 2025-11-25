@@ -2,13 +2,12 @@
 import argparse
 import sys
 import os
-
-# Добавляем путь к src в sys.path для импортов
-sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
-
 from src.TextDataReader import TextDataReader
 from src.JsonDataReader import JsonDataReader
 from src.DebtCalculation import DebtCalculation
+
+# Добавляем путь к src в sys.path для импортов
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
 
 def get_path_from_arguments(args) -> str:

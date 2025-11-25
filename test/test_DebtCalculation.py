@@ -48,14 +48,15 @@ class TestDebtCalculation:
             ]
         }
 
-    def test_count_students_with_debts_with_debts(self, sample_data_with_debts):
-        """Тест подсчета студентов с задолженностями (когда они есть)"""
+    def test_count_students_with_debts_with_debts(
+            self, sample_data_with_debts):
+        """Тест подсчета студентов с задолженностями"""
         calculator = DebtCalculation(sample_data_with_debts)
         count = calculator.count_students_with_debts()
         assert count == 2
 
     def test_count_students_with_debts_no_debts(self, sample_data_no_debts):
-        """Тест подсчета студентов с задолженностями (когда их нет)"""
+        """Тест подсчета студентов с задолженностями"""
         calculator = DebtCalculation(sample_data_no_debts)
         count = calculator.count_students_with_debts()
         assert count == 0
