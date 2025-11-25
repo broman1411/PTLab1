@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+﻿# -*- coding: utf-8 -*-
 import pytest
 import json
 import tempfile
@@ -45,7 +45,8 @@ class TestJsonDataReader:
     def json_file_path(self, valid_json_data, tmpdir) -> str:
         """Фикстура создает временный JSON файл и возвращает путь к нему"""
         p = tmpdir.join("students.json")
-        p.write(json.dumps(valid_json_data, ensure_ascii=False, indent=2))
+        with open(str(p), "w", encoding="utf-8") as f:
+            json.dump(valid_json_data, f, ensure_ascii=False, indent=2)
         return str(p)
     
     def test_read_valid_json_file(self, json_file_path, sample_data):
@@ -108,7 +109,8 @@ class TestJsonDataReader:
         ]
         
         p = tmpdir.join("list_structure.json")
-        p.write(json.dumps(invalid_data, ensure_ascii=False, indent=2))
+        with open(str(p), "w", encoding="utf-8") as f:
+            json.dump(invalid_data, f, ensure_ascii=False, indent=2)
         
         reader = JsonDataReader()
         
@@ -124,7 +126,8 @@ class TestJsonDataReader:
         }
         
         p = tmpdir.join("invalid_score.json")
-        p.write(json.dumps(invalid_data, ensure_ascii=False, indent=2))
+        with open(str(p), "w", encoding="utf-8") as f:
+            json.dump(invalid_data, f, ensure_ascii=False, indent=2)
         
         reader = JsonDataReader()
         
@@ -140,7 +143,8 @@ class TestJsonDataReader:
         }
         
         p = tmpdir.join("invalid_subjects.json")
-        p.write(json.dumps(invalid_data, ensure_ascii=False, indent=2))
+        with open(str(p), "w", encoding="utf-8") as f:
+            json.dump(invalid_data, f, ensure_ascii=False, indent=2)
         
         reader = JsonDataReader()
         
@@ -167,7 +171,8 @@ class TestJsonDataReader:
         }
         
         p = tmpdir.join("single_student.json")
-        p.write(json.dumps(single_student_data, ensure_ascii=False, indent=2))
+        with open(str(p), "w", encoding="utf-8") as f:
+            json.dump(single_student_data, f, ensure_ascii=False, indent=2)
         
         reader = JsonDataReader()
         result = reader.read(str(p))
@@ -189,7 +194,8 @@ class TestJsonDataReader:
         }
         
         p = tmpdir.join("special_chars.json")
-        p.write(json.dumps(special_chars_data, ensure_ascii=False, indent=2))
+        with open(str(p), "w", encoding="utf-8") as f:
+            json.dump(special_chars_data, f, ensure_ascii=False, indent=2)
         
         reader = JsonDataReader()
         result = reader.read(str(p))
@@ -211,7 +217,8 @@ class TestJsonDataReader:
         }
         
         p = tmpdir.join("float_scores.json")
-        p.write(json.dumps(float_scores_data, ensure_ascii=False, indent=2))
+        with open(str(p), "w", encoding="utf-8") as f:
+            json.dump(float_scores_data, f, ensure_ascii=False, indent=2)
         
         reader = JsonDataReader()
         result = reader.read(str(p))
@@ -262,3 +269,4 @@ class TestJsonDataReader:
         
         assert "Ковальчук Анна Михайловна" in result
         assert any("русский язык" in subject for subject in result["Ковальчук Анна Михайловна"])
+

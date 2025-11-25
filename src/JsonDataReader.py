@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 import json
 from typing import Any, Dict
-from Types import DataType
-from DataReader import DataReader
+from .Types import DataType
+from .DataReader import DataReader
 
 
 class JsonDataReader(DataReader):
